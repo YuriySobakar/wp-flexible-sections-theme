@@ -1,10 +1,13 @@
-# AdFlagger — flexible-content WordPress theme
+# Flexible-sections WordPress theme
 
 A from-scratch WordPress theme built around **ACF Pro Flexible Content**: every page is a list of
 sections that editors compose in the admin, and every section is one PHP field definition plus one
-template part. Styled with **Tailwind CSS 4** (CLI build, no bundler), fonts self-hosted, sliders on
-Splide loaded only where a page uses them. Practice project (Mate Academy, Tailwind practice) that
-became a reusable starter.
+template part. Built as a freelance project for an iGaming SEO agency that runs many casino brands —
+one theme, dozens of sites, each page assembled by content editors without a developer.
+
+Designed for speed: Tailwind CSS 4 with a purge safelist (one small stylesheet), self-hosted Roboto
+subsets preloaded, AVIF/SVG uploads, the Splide slider loaded only on pages that contain a slider
+section, Redis object cache in the dev stack. A production page ships in well under 100 KB of HTML.
 
 ## How the flexible content works
 

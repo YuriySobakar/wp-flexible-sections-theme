@@ -1,13 +1,13 @@
 version: '3.1'
 
 services:
-  adflagger_db:
+  starter_db:
     image: mysql:8.0
-    container_name: adflagger_db
+    container_name: starter_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: adflagger_db
+      MYSQL_DATABASE: starter_db
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
@@ -15,53 +15,53 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     networks:
-      - adflagger_net
+      - starter_net
 
-  adflagger_wp:
+  starter_wp:
     build: .
-    container_name: adflagger_wp
+    container_name: starter_wp
     restart: always
     ports:
       - "8095:80"
     environment:
-      WORDPRESS_DB_HOST: adflagger_db
+      WORDPRESS_DB_HOST: starter_db
       WORDPRESS_DB_USER: user
       WORDPRESS_DB_PASSWORD: password
-      WORDPRESS_DB_NAME: adflagger_db
-      WP_REDIS_HOST: adflagger_redis
+      WORDPRESS_DB_NAME: starter_db
+      WP_REDIS_HOST: starter_redis
     depends_on:
-      - adflagger_db
-      - adflagger_redis
+      - starter_db
+      - starter_redis
     volumes:
       # 1. Монтируем всю папку WP целиком, чтобы видеть wp-config.php и ядро
       - ./www:/var/www/html
       # 2. Подкидываем конфиг PHP для увеличения лимитов (для All-in-One Migration)
       - ./php_conf/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     networks:
-      - adflagger_net
+      - starter_net
 
   # Добавим PMA для удобной работы с базой (опционально, но админу пригодится)
-  adflagger_pma:
+  starter_pma:
     image: phpmyadmin/phpmyadmin
-    container_name: adflagger_pma
+    container_name: starter_pma
     ports:
       - "8096:80"
     environment:
-      PMA_HOST: adflagger_db
+      PMA_HOST: starter_db
       MYSQL_ROOT_PASSWORD: password
     networks:
-      - adflagger_net
+      - starter_net
 
-  adflagger_redis:
+  starter_redis:
     image: redis:6.0-alpine
-    container_name: adflagger_redis
+    container_name: starter_redis
     restart: always
     networks:
-      - adflagger_net
+      - starter_net
 
 volumes:
   db_data:
 
 networks:
-  adflagger_net:
+  starter_net:
     driver: bridge
