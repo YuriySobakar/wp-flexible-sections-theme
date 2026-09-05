@@ -1,0 +1,19 @@
+# WordPress core, plugins, uploads and config live outside the repo — only the theme is versioned.
+www/*
+!www/wp-content/
+www/wp-content/*
+!www/wp-content/themes/
+www/wp-content/themes/*
+!www/wp-content/themes/starter/
+
+# Build tooling
+node_modules/
+
+# Internal docs copied from another project — not part of this theme
+code-conventions/
+
+# Local
+.env
+*.log
+.DS_Store
+Thumbs.db

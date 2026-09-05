@@ -1,0 +1,13 @@
+{
+  "name": "starter-theme-build",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tailwindcss -i ./www/wp-content/themes/starter/assets/css/input.css -o ./www/wp-content/themes/starter/assets/css/style.css --watch",
+    "build": "tailwindcss -i ./www/wp-content/themes/starter/assets/css/input.css -o ./www/wp-content/themes/starter/assets/css/style.css --minify"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}

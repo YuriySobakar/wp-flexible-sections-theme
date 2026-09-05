@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@source "../../safelist.html";
+
+@theme {
+  /* Переносим переменные, которые могут понадобиться */
+  --font-sans: inherit; /* Font set dynamically via Customizer → <body> style */
+  --color-brand-green: #22c55e;
+  --color-brand-dark: #181b26;
+}
+
+/* Ваши кастомные стили, которых нет в Tailwind по умолчанию */
+@layer utilities {
+  .text-shadow-md {
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Стили для слайдера или специфичных элементов */
+.header-bg {
+  /* Если у вас был специфичный градиент или фон */
+  background-color: #181b26;
+}
+
+/* Splide hero-slider pagination dots — match original design */
+.section-slider-hero .splide__pagination__page {
+  width: 0.75rem;
+  height: 0.75rem;
+  background: rgb(96 165 250 / 0.5);
+  border: none;
+  border-radius: 9999px;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+  margin: 0 0.25rem;
+}
+
+.section-slider-hero .splide__pagination__page:hover {
+  background: rgb(96 165 250 / 1);
+  transform: scale(1.2);
+}
+
+.section-slider-hero .splide__pagination__page.is-active {
+  background: rgb(96 165 250 / 1);
+  transform: scale(1.2);
+}
+
+/* ── FAQ accordion: CSS-only smooth open/close ── */
+.faq-accordion .faq-item .faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.faq-accordion .faq-item[open] .faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.faq-accordion .faq-item .faq-answer > [itemprop="text"] {
+  overflow: hidden;
+}
+
+.section-slider-hero .splide__pagination {
+  bottom: 0.5rem;
+}
+
+
